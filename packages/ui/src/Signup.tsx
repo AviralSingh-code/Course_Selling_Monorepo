@@ -3,7 +3,9 @@ import { useState } from "react";
 
 const defaultTheme = createTheme();
 
-export function Signup()
+export function Signup(props: {
+    onClick: (username: string, password: string) => void
+})
 {
     const[email, setEmail] = useState("");
     const[password, setPassword] = useState("");
@@ -57,7 +59,7 @@ export function Signup()
             </Grid>
             <Button
               onClick={()=>{
-                
+                props.onClick(email, password);
               }}
               fullWidth
               variant="contained"
