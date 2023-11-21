@@ -1,5 +1,5 @@
 {
-  "name": "my-turborepo",
+  "name": "week-11-full-momo",
   "private": true,
   "scripts": {
     "build": "turbo build",
