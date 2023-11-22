@@ -2,8 +2,8 @@ import jwt from "jsonwebtoken";
 const secretKey = 'SECr3tFw';
 
 interface Data{
-    username: string,
-    password: number
+    username: string | null,
+    password: string | number | null
 };
 export function generateToken(user: Data)
 {

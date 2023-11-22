@@ -15,8 +15,14 @@ export default function SignupPage()
                 }
             })
             let data = response.data;
-            localStorage.setItem("token", data.token);
-            router.push("/courses");
+            if(!data.token)
+            {
+                router.push('/oopssignup');
+            }
+            else{
+                localStorage.setItem("token", data.token);
+                router.push("/courses");
+            }
         }} />
     </div>
 }

@@ -6,7 +6,7 @@ import { connectDb } from "../../../lib/dbConnect";
 
 type Data = {
     message?: string | null
-    token?: string
+    token?: string | null
 };
 
 export default async function handler(
@@ -18,7 +18,8 @@ export default async function handler(
     const result = await Admin.findOne({username: admin.username});
     if(result)
     {
-        res.status(403).json({message: 'Admin already exists'});
+        const token  = null;
+        res.json({message: 'Admin already exists', token});
     }
     else
     {
