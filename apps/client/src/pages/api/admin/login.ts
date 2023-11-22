@@ -18,7 +18,6 @@ export default async function handler(
     await connectDb();
     const admin = req.headers;
     const result = await Admin.findOne({username: admin.username, password: admin.password});
-    console.log(admin.username);
     if(result)
     {
       const token = generateToken(admin);

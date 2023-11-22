@@ -5,6 +5,7 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 type Data = {
   message?: string
   courseId?: number
+  courses?: any[]
 }
 
 function makeid(length: number) {
@@ -24,9 +25,17 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
     await connectDb();
-    const course = req.body;
-    course.id = makeid(10);
-    const createCourse = new Course(course);
-    await createCourse.save();
-    res.json({message: 'Course Created Successfully', courseId: course.id});
+    if(req.method == "POST")
+    {
+      const course = req.body;
+      course.id = makeid(10);
+      const createCourse = new Course(course);
+      await createCourse.save();
+      res.json({message: 'Course Created Successfully', courseId: course.id});
+    }
+    else if(req.method == "GET")
+    {
+      const courses = await Course.find({}); //this gives all the courses without any parameteres
+      res.json({courses});
+    }
 }

@@ -1,11 +1,11 @@
 import { atom } from "recoil";
 
 export interface Course{
-    _id: string,
-    title: string,
-    description: string,
-    imageLink: string,
-    price: string
+    _id?: string | undefined,
+    title: string | undefined,
+    description: string | undefined,
+    imageLink: string | undefined,
+    price: string | undefined
 };
 
 export const courseState = atom<{isLoading: boolean, course: null | Course}>({
