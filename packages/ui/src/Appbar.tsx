@@ -1,25 +1,25 @@
 import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 
-export function Appbar({title, userState} )
+export function Appbar({title, userState, onSignupParent, onLoginParent, onLogoutParent} )
 {
     if(userState == null)
     {
         return (
-            <StateOne title={title}></StateOne>
+            <StateOne title={title} onSignup={()=>{onSignupParent();}} onLogin={()=>{onLoginParent();}}></StateOne>
             );
     }
     else
     {
         return (
-            <StateTwo title={title}></StateTwo>
+            <StateTwo title={title} onLogout={()=>{onLogoutParent();}}></StateTwo>
         );
     }
     
 }
 
 
-function StateOne({title})
+function StateOne(props)
 {
     return (
     <AppBar position="static" sx={{backgroundColor:'#427D9D'}}>
@@ -28,10 +28,16 @@ function StateOne({title})
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" style={{ flexGrow: 1 }}>
-              {title}
+              {props.title}
             </Typography>
-            <Button color="inherit">SIGNUP</Button>
-            <Button color="inherit">LOGIN</Button>
+            <Button color="inherit"
+            onClick={()=>{
+              props.onSignup();
+            }}>SIGNUP</Button>
+            <Button color="inherit"
+            onClick={()=>{
+              props.onLogin();
+            }}>LOGIN</Button>
           </Toolbar>
         </AppBar>
     );
@@ -39,7 +45,7 @@ function StateOne({title})
 
 
 
-function StateTwo({title})
+function StateTwo(props)
 {
     return (
     <AppBar position="static" sx={{backgroundColor:'#427D9D'}}>
@@ -48,9 +54,12 @@ function StateTwo({title})
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" style={{ flexGrow: 1 }}>
-              {title}
+              {props.title}
             </Typography>
-            <Button color="inherit">LOGOUT</Button>
+            <Button color="inherit"
+            onClick={()=>{
+              props.onLogout();
+            }}>LOGOUT</Button>
           </Toolbar>
         </AppBar>
     );

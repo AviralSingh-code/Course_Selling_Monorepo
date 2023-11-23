@@ -1,12 +1,11 @@
 import { Box, Button, Container, Grid, Typography, useThemeProps } from "@mui/material";
 import Head from 'next/head';
 
-export function Card({userState, onBrowserClickParent, onLogoutClickParent})
+export function Card({userState, onBrowserClickParent, onLogoutClickParent, onSignupParent, onLoginParent})
 {
-  console.log(userState);
   if(!userState)
   {
-    return ( <StateOne></StateOne> );
+    return ( <StateOne onSignup={()=>{onSignupParent();}} onLogin={()=>{onLoginParent();}}></StateOne> );
   }
   else
   {
@@ -16,7 +15,7 @@ export function Card({userState, onBrowserClickParent, onLogoutClickParent})
 }
 
 
-function StateOne()
+function StateOne(props)
 {
   return (
     <div style={{
@@ -65,10 +64,16 @@ function StateOne()
                 width: "100wh",
                 margin: "0px"
               }}>
-                <Button variant="outlined" color="primary">
-                  Sign In
+                <Button variant="outlined" color="primary"
+                onClick={()=>{
+                  props.onLogin();
+                }}>
+                  LOG IN
                 </Button>
-                <Button variant="outlined" color="primary" style={{ marginLeft: '8px' }}>
+                <Button variant="outlined" color="primary" style={{ marginLeft: '8px' }}
+                onClick={()=>{
+                  props.onSignup();
+                }}>
                   Sign Up
                 </Button>
               </div>

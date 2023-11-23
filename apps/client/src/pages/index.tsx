@@ -23,6 +23,12 @@ export default function Home() {
           });
           router.push("/");
         }}
+        onLoginParent={()=>{
+          router.push("/login");
+        }}
+        onSignupParent={()=>{
+          router.push("/signup");
+        }}
       ></Card>
     </>
   )
