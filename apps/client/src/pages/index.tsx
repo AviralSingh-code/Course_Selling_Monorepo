@@ -1,14 +1,29 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
+import { userEmailState } from "store"
 import { Card } from "ui/card"
-const inter = Inter({ subsets: ['latin'] })
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { useRouter } from "next/router";
+import { userState } from "store";
+
 
 export default function Home() {
+  const userStateValue = useRecoilValue(userEmailState);
+  const router = useRouter();
+  const setUserState = useSetRecoilState(userState);
   return (
     <>
-      <Card></Card>
+      <Card 
+        userState={userStateValue} 
+        onBrowserClickParent={()=>{
+        router.push("/courses");
+        }}
+        onLogoutClickParent={()=>{
+          setUserState({
+            isLoading: false,
+            userEmail: null
+          });
+          router.push("/");
+        }}
+      ></Card>
     </>
   )
 }

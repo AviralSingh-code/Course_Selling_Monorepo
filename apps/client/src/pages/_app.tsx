@@ -2,7 +2,7 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { RecoilRoot, useRecoilValue } from 'recoil';
 import { Appbar } from "ui/Appbar";
-import { isUserLoading } from 'store';
+import { userEmailState } from 'store';
 export default function App({ Component, pageProps }: AppProps) {
   
   return <RecoilRoot>
@@ -13,6 +13,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
 function HeaderComponent()
 {
-  const userState = useRecoilValue(isUserLoading);
+  const userState = useRecoilValue(userEmailState);
   return ( <Appbar title={"EduWaveX"} userState={userState}></Appbar> );
 }

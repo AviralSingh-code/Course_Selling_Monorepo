@@ -20,6 +20,7 @@
     "packages/*"
   ],
   "dependencies": {
+    "@mui/icons-material": "^5.14.18",
     "axios": "^1.6.2",
     "jsonwebtoken": "^9.0.2"
   }
