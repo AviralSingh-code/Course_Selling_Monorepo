@@ -6,7 +6,7 @@ import { Card, TextField, Button, Grid } from "@mui/material";
 import axios from "axios";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { courseDetails, courseState, isCourseLoading } from "store";
-import { CourseCard } from "../courses";
+import { CourseCard } from "ui/CourseCard";
 import { useRouter } from "next/router";
 
 
