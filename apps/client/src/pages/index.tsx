@@ -17,6 +17,7 @@ export default function Home() {
         router.push("/courses");
         }}
         onLogoutClickParent={()=>{
+          localStorage.setItem("token", "");
           setUserState({
             isLoading: false,
             userEmail: null

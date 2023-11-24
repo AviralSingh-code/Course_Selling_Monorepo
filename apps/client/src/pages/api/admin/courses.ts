@@ -1,7 +1,8 @@
 import { connectDb } from '@/lib/dbConnect';
+import axios from 'axios';
 import { Course } from 'db';
 import type { NextApiRequest, NextApiResponse } from 'next'
-import authentication from '../auth';
+
 
 type Data = {
   message?: string
@@ -26,12 +27,7 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
     await connectDb();
-    // const result = await authentication(req);
-    // console.log(result);
-    // if(!result)
-    // {
-    //   return res.json({message: 'Authentication Failed'});
-    // }
+    
     if(req.method == "POST")
     {
       const course = req.body;
