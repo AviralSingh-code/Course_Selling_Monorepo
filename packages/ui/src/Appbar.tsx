@@ -1,7 +1,7 @@
 import { AppBar, Button, IconButton, Toolbar, Typography } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 
-export function Appbar({title, userState, onSignupParent, onLoginParent, onLogoutParent} )
+export function Appbar({title, userState, onSignupParent, onLoginParent, onLogoutParent, onAddCourseParent} )
 {
     if(userState == null)
     {
@@ -12,7 +12,7 @@ export function Appbar({title, userState, onSignupParent, onLoginParent, onLogou
     else
     {
         return (
-            <StateTwo title={title} onLogout={()=>{onLogoutParent();}}></StateTwo>
+            <StateTwo title={title} onLogout={()=>{onLogoutParent();}} onAddCourse={()=>{onAddCourseParent();}}></StateTwo>
         );
     }
     
@@ -60,6 +60,10 @@ function StateTwo(props)
             onClick={()=>{
               props.onLogout();
             }}>LOGOUT</Button>
+            <Button color="inherit"
+            onClick={()=>{
+              props.onAddCourse();
+            }}>ADD COURSE</Button>
           </Toolbar>
         </AppBar>
     );

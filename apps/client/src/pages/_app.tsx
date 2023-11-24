@@ -50,6 +50,9 @@ function HeaderComponent({ Component, pageProps })
               userEmail: null
             });
             router.push("/");
+          }}
+          onAddCourseParent={()=>{
+            router.push("/addcourse");
           }}></Appbar> 
           <Component {...pageProps} />
       </div>
