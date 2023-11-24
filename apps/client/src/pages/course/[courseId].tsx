@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 // import { useParams } from "react-router-dom";
 // import { useParams } from 'next/navigation'
 
-import { Card, TextField, Button, Grid } from "@mui/material";
+import { Card, TextField, Button, Grid, Typography } from "@mui/material";
 import axios from "axios";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { courseDetails, courseState, isCourseLoading } from "store";
+import { courseDescription, courseDetails, courseImage, coursePrice, courseState, courseTitle, isCourseLoading } from "store";
 import { CourseCard } from "ui/CourseCard";
 import { useRouter } from "next/router";
 
@@ -51,16 +51,53 @@ function Course()
             Loading....
         </div>
     }
-    return <div>
+    return <div style={{
+        display: "flex",
+        justifyContent: "center"
+    }}> 
+        <div
+    style={{
+        maxWidth: "1200px",
+        marginTop: "5%"
+    }}>
         <Grid container>
             <Grid item lg={8} md={12} sm={12}>
-                <CourseCard courseHelper={courseHelper}></CourseCard>
+                <CourseCardUpdate></CourseCardUpdate>
             </Grid>
             <Grid item lg={4} md={12} sm={12}>
                 <CourseUpdate></CourseUpdate>
             </Grid>
         </Grid>
     </div>
+    </div>
+}
+
+function CourseCardUpdate()
+{
+    const currCourseTitle = useRecoilValue(courseTitle);
+    const currCourseDescription = useRecoilValue(courseDescription);
+    const currCourseImageLink = useRecoilValue(courseImage);
+    const currCoursePrice = useRecoilValue(coursePrice);
+
+    return (
+        <Card style={{
+            border: "2px solid black",
+            margin: 10,
+            width: 300,
+            minHeight: 200,
+        }}>
+            <Typography textAlign={"center"} variant="h6">
+                {currCourseTitle}
+            </Typography>
+            <Typography textAlign={"center"} variant="subtitle1">
+                {currCourseDescription}
+            </Typography>
+            <img src={currCourseImageLink} style={{width: 300}}></img>
+            <Typography textAlign={"center"} variant="subtitle1">
+                {currCoursePrice}
+            </Typography>
+        </Card>
+    );
 }
 
 function CourseUpdate()
